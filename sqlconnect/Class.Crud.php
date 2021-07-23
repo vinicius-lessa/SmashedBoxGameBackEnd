@@ -22,8 +22,8 @@ class CrudClass {
         $params = implode(', ', array_values($arrayDados));
 
         $sql  = 'INSERT INTO ' . self::$tabela . ' (' . $campos . ') VALUES(' . $params . ');';
-        echo $sql;
-        //return $sql;
+        echo json_encode(["mensagem" => $sql]);
+        return $sql;
     }
 
 
@@ -72,9 +72,9 @@ class CrudClass {
         
             $stm = self::$conexao->prepare($sql);
 
-            foreach($arrayDados as $key => $value):
-                $stm->bindValue(':' . $key, $value);
-            endforeach;
+            // foreach($arrayDados as $key => $value):
+            //     $stm->bindValue(':' . $key, $value);
+            // endforeach;
 
             $retorno = $stm->execute();
             return $retorno;
