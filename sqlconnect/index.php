@@ -18,12 +18,4 @@
     
     // Parâmetro passado pela URL
     $uri = basename($_SERVER['REQUEST_URI']);
-
-    // echo "Olá Mundo!";
-
-    if ($_SERVER['REQUEST_METHOD'] == 'PUT'):
-        
-        echo json_encode( ['verbo_http' => $_SERVER['REQUEST_METHOD']] );
-    endif;
-
 ?>
