@@ -22,7 +22,8 @@ class CrudClass {
         $params = implode(', ', array_values($arrayDados));
 
         $sql  = 'INSERT INTO ' . self::$tabela . ' (' . $campos . ') VALUES(' . $params . ');';
-        return $sql;
+        echo $sql;
+        //return $sql;
     }
 
 
