@@ -7,10 +7,15 @@
 // define('USER'       , 'root'            );
 // define('PASSWORD'   , 'root'            );
 
-define('HOST'       , 'sql200.epizy.com'        );
-define('DBNAME'     , 'epiz_29215994_smashed'   );
-define('USER'       , 'epiz_29215994'           );
-define('PASSWORD'   , 'Hy55QIMDeEn'             );
+// define('HOST'       , 'sql200.epizy.com'        );
+// define('DBNAME'     , 'epiz_29215994_smashed'   );
+// define('USER'       , 'epiz_29215994'           );
+// define('PASSWORD'   , 'Hy55QIMDeEn'             );
+
+define('HOST'       , 'db4free.net'    );
+define('DBNAME'     , 'smashedboxdb'   );
+define('USER'       , 'root_smashed'   );
+define('PASSWORD'   , 'TAunrBApLYGLru4');
  
 class Conexao
 {
