@@ -2,7 +2,7 @@
 
 require_once 'Class.Conexao.php';
 
-class Crud {
+class CrudClass {
     // Atributos estáticos
     private static $conexao;
     private static $tabela;

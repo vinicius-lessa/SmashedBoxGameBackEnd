@@ -5,7 +5,8 @@
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     // header('Content-type: application/json; charset=UTF-8');
     
-    require_once 'classes/Class.Crud.php';
+    require_once 'Class.Crud.php';
+    require_once 'Class.Conexao.php';
     
     # Estabelece Conexão com o BANCO DE DADOS
     
@@ -13,10 +14,8 @@
     $pdo = Conexao::getConexao();
     
     // Class.Class.Crud.php
-    Crud::setConexao($pdo);
-    
-    // Parâmetro passado pela URL
-    $uri = basename($_SERVER['REQUEST_URI']);
+    // CrudClass::setConexao($pdo);
+    CrudClass::setConexao($pdo);
 
 #############################################################################################
         
@@ -28,13 +27,13 @@
         if ( !Empty($uri) && $uri <> 'index.php' ):    
             // "WORLD RECORDS"
             if ($uri == 'allData'):                
-                $dados = Crud::select('SELECT * FROM highscore ORDER BY score DESC LIMIT 10',[],TRUE);
+                $dados = CrudClass::select('SELECT * FROM highscore ORDER BY score DESC LIMIT 10',[],TRUE);
             
             
             // "HIGHEST SCORE + PERSONAL BEST"
             else:
                 if (!is_numeric($uri)):
-                    $dados = Crud::select("
+                    $dados = CrudClass::select("
                         (SELECT id, score, playername, data FROM highscore ORDER BY score DESC LIMIT 1)
                         UNION
                         (SELECT id, score, playername, data FROM highscore WHERE playername = :PLAYER_NAME ORDER BY score DESC LIMIT 1)"
@@ -79,7 +78,7 @@
         endif;
 
         # TEMPORARIAMENTE FAÇO UM SELECT PARA VERIFICAR SCORE JÁ EXISTENTE DE PLAYER
-        $dados = Crud::select(
+        $dados = CrudClass::select(
             'SELECT score FROM highscore WHERE playername = :PLAYER_NAME ORDER BY score DESC LIMIT 1',
             ['PLAYER_NAME' => $playerName],
             TRUE);
@@ -92,8 +91,8 @@
                 exit;
             endif;
 
-            Crud::setTabela('highscore');
-            $retorno = Crud::update(['score' => $score, 'data' => $date], ['id' => $id, 'playername' => "'" . $playerName . "'"]);
+            CrudClass::setTabela('highscore');
+            $retorno = CrudClass::update(['score' => $score, 'data' => $date], ['id' => $id, 'playername' => "'" . $playerName . "'"]);
     
             if ($retorno):
                 http_response_code(202);
@@ -104,8 +103,8 @@
             endif;  
         # SE PLAYER NÃO EXISTE, INSERT
         else:
-            Crud::setTabela('highscore');
-            $retorno = Crud::insert(['playername' => "'" . $playerName . "'", 'score' => $score, 'data' => $date]);
+            CrudClass::setTabela('highscore');
+            $retorno = CrudClass::insert(['playername' => "'" . $playerName . "'", 'score' => $score, 'data' => $date]);
         
             if ($retorno):
                 http_response_code(201);
@@ -149,8 +148,8 @@
     //         exit;
     //     endif;
 
-    //     Crud::setTabela('highscore');
-    //     $retorno = Crud::update(['score' => $score, 'data' => $date], ['id' => $id, 'playername' => $playerName]);
+    //     CrudClass::setTabela('highscore');
+    //     $retorno = CrudClass::update(['score' => $score, 'data' => $date], ['id' => $id, 'playername' => $playerName]);
 
     //     if ($retorno):
     //         http_response_code(202);
@@ -172,15 +171,15 @@
         //     http_response_code(406);
         //     exit;
         // else:
-        //     $dados = Crud::select('SELECT id FROM estoque WHERE id = :id', ['id' => $uri], FALSE);
+        //     $dados = CrudClass::select('SELECT id FROM estoque WHERE id = :id', ['id' => $uri], FALSE);
         //     if (!empty($dados)):
         //         // Exclui da Tabela ESTOQUE
-        //         Crud::setTabela('estoque');
-        //         $retorno = Crud::delete(['id' => $uri]);
+        //         CrudClass::setTabela('estoque');
+        //         $retorno = CrudClass::delete(['id' => $uri]);
     
         //         // Exclui da tabela MOVIMENTAÇÃO_ESTOQUE
-        //         Crud::setTabela('movimentacao_estoque');
-        //         $retornoMov = Crud::delete(['id_produto' => $uri]);
+        //         CrudClass::setTabela('movimentacao_estoque');
+        //         $retornoMov = CrudClass::delete(['id_produto' => $uri]);
     
         //         if ($retorno):
         //             http_response_code(202);
