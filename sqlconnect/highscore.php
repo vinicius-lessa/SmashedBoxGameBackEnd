@@ -105,6 +105,7 @@
             endif;  
         # SE PLAYER NÃO EXISTE, INSERT
         else:
+            echo json_encode(['mensagem' => 'Um Novo SCORE será inserido! Dados: ' . $playerName . ' - ' . $score ]);
             CrudClass::setTabela('highscore');
             $retorno = CrudClass::insert(['playername' => "'" . $playerName . "'", 'score' => $score, 'data' => $date]);
         
