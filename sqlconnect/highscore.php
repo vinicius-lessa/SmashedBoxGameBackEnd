@@ -11,10 +11,10 @@
     # Estabelece Conexão com o BANCO DE DADOS
     
     // Class.Conexao.php
+    //$pdo = Conexao::getConexao();    
     $pdo = Conexao::getConexao();
     
-    // Class.Class.Crud.php
-    // CrudClass::setConexao($pdo);
+    // Class.Class.Crud.php    
     CrudClass::setConexao($pdo);
 
     $uri = basename($_SERVER['REQUEST_URI']);
