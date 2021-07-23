@@ -22,7 +22,6 @@ class CrudClass {
         $params = implode(', ', array_values($arrayDados));
 
         $sql  = 'INSERT INTO ' . self::$tabela . ' (' . $campos . ') VALUES(' . $params . ');';
-        echo json_encode(["mensagem" => $sql]);
         return $sql;
     }
 
