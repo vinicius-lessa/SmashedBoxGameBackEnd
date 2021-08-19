@@ -1,11 +1,11 @@
 <?php    
     // CRUD TABELA DE HIGHSCORE
         
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Headers: Accept');
-    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-    header('Content-type: application/json; charset=UTF-8');
-    header('Access-Control-Allow-Credentials: true');    
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: *");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Content-type: application/json; charset=UTF-8");    
     
     require_once 'Class.Crud.php';
     require_once 'Class.Conexao.php';
