@@ -1,12 +1,12 @@
 <?php    
     // CRUD TABELA DE HIGHSCORE
         
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: *");
-    header("Access-Control-Allow-Headers: X-Requested-With");
-    header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-    header("Content-type: application/json; charset=UTF-8");    
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Origin, X-Request-Width, Accept, token, Content-Type, X-Requested-With');    
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+    header('Content-type: application/json; charset=UTF-8');
+    header('Access-Control-Max-Age: 86400');
     
     require_once 'Class.Crud.php';
     require_once 'Class.Conexao.php';
